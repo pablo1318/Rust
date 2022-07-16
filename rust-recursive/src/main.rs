@@ -1,5 +1,5 @@
 use std::io::{stdin, stdout, Write};
-use std::time::{Duration, Instant};
+use std::time::Instant;
 
 fn empty_buff() {
     let r = stdout().flush();
@@ -15,8 +15,14 @@ fn calcular_fibonacci(n: u64) -> u64 {
 }
 
 fn calcular_fibonacci_iter(n: u64) -> u64 {
-    let mut r = 0;
-    for i in n..0 {}
+    let mut r = 1;
+    let mut previous_number: u64 = 0;
+    let mut previous_previous_number: u64;
+    for _ in 1..n {
+        previous_previous_number = previous_number;
+        previous_number = r;
+        r = previous_previous_number + previous_number;
+    }
     return r;
 }
 
@@ -52,6 +58,6 @@ fn main() {
     println!(
         "El resultado del cálculo ITERATIVO ha sido : {}, calculado en {}",
         res,
-        dur.as_millis()
+        dur.as_micros()
     );
 }
